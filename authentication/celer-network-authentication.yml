@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: searched
+source: https://cbridge-docs.celer.network/developer/cbridge-sdk + grpc/celer-network-gateway.proto
+docs: https://cbridge-docs.celer.network/developer/cbridge-sdk
+summary:
+  types: [none, signature]
+  api_key_in: []
+  oauth2_flows: []
+  note: >-
+    The cBridge gateway API carries no API-key, OAuth, or bearer authentication.
+    Read/query operations (getTransferConfigs, getTokenInfo, estimateAmt,
+    getTransferStatus, transferHistory, estimateWithdrawAmt) are public. The
+    only state-changing gateway call, withdrawLiquidity, is authorized by a
+    client-side cryptographic signature over the serialized WithdrawReq
+    (withdraw_req + sig fields) produced by the user's wallet — the SGN validators
+    verify the signature on chain, so there is no server-issued API credential.
+schemes:
+  - name: public
+    type: none
+    applies_to: read/query operations
+    sources: [grpc/celer-network-gateway.proto]
+  - name: client-signature
+    type: signature
+    scheme: wallet-signed request (EIP-712 style)
+    applies_to: WithdrawLiquidity
+    sources: [grpc/celer-network-gateway.proto]
