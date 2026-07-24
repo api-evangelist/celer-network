@@ -1,0 +1,48 @@
+generated: '2026-07-18'
+method: derived
+source: grpc/celer-network-gateway.proto + grpc/celer-network-cbridge-query.proto
+entities:
+  - name: Chain
+    fields: [id, name, icon, block_delay, gas_token_symbol, explore_url, contract_addr, drop_gas_amt]
+    key: id
+  - name: Token
+    fields: [symbol, address, decimal, xfer_disabled]
+    key: symbol
+    source: grpc/celer-network-cbridge-query.proto
+  - name: TokenInfo
+    fields: [token, name, icon]
+  - name: TransferInfo
+    fields: [chain, token, amount]
+  - name: TransferHistory
+    fields: [transfer_id, src_send_info, dst_received_info, ts, src_block_tx_link, dst_block_tx_link, status, refund_reason]
+    key: transfer_id
+relationships:
+  - from: Chain
+    to: TokenInfo
+    kind: has_many
+    via: chain_token (map<chain_id, ChainTokenInfo>)
+  - from: TokenInfo
+    to: Token
+    kind: has_one
+    via: token
+  - from: TransferInfo
+    to: Chain
+    kind: has_one
+    via: chain
+  - from: TransferInfo
+    to: Token
+    kind: has_one
+    via: token
+  - from: TransferHistory
+    to: TransferInfo
+    kind: has_one
+    via: src_send_info
+  - from: TransferHistory
+    to: TransferInfo
+    kind: has_one
+    via: dst_received_info
+enums:
+  - name: TransferHistoryStatus
+    values: [TRANSFER_UNKNOWN, TRANSFER_SUBMITTING, TRANSFER_FAILED, TRANSFER_WAITING_FOR_SGN_CONFIRMATION, TRANSFER_WAITING_FOR_FUND_RELEASE, TRANSFER_COMPLETED, TRANSFER_TO_BE_REFUNDED, TRANSFER_REQUESTING_REFUND, TRANSFER_REFUND_TO_BE_CONFIRMED, TRANSFER_CONFIRMING_YOUR_REFUND, TRANSFER_REFUNDED, TRANSFER_DELAYED]
+  - name: XferStatus
+    values: [UNKNOWN, OK_TO_RELAY, SUCCESS, BAD_LIQUIDITY, BAD_SLIPPAGE, BAD_TOKEN, REFUND_REQUESTED, REFUND_DONE, BAD_XFER_DISABLED, BAD_DEST_CHAIN, EXCEED_MAX_OUT_AMOUNT, XFER_DELAYED, BAD_ADDRESS]

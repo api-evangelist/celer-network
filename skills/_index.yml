@@ -1,0 +1,8 @@
+generated: '2026-07-18'
+method: generated
+source: grpc/celer-network-gateway.proto
+skills:
+  - file: celer-network-cross-chain-transfer.md
+    name: Estimate and track a cBridge cross-chain transfer
+    api: grpc/celer-network-gateway.proto
+    operations: [GetTransferConfigs, GetTokenInfo, EstimateAmt, GetTransferStatus, TransferHistory]

@@ -1,0 +1,21 @@
+generated: '2026-07-18'
+method: searched
+source: https://cbridge-docs.celer.network + grpc/celer-network-gateway.proto
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://cbridge-docs.celer.network/developer/cbridge-sdk
+  protocol_version: cBridge V2 / SGN V2
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal API deprecation policy or Sunset/Deprecation header support was found.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_note: >-
+  No dedicated developer status page was found; operational updates are shared
+  via Discord (discord.com/invite/Trhab5w), Twitter (@CelerNetwork), and the
+  forum (forum.celer.network).
+deprecated_operations: []

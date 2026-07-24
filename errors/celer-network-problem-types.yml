@@ -1,0 +1,42 @@
+generated: '2026-07-18'
+method: derived
+source: grpc/celer-network-gateway.proto (ErrCode) + grpc/celer-network-cbridge.proto (XferStatus)
+format: custom-envelope
+envelope:
+  field: err
+  shape: '{ code: ErrCode, msg: string }'
+  note: >-
+    Every gateway response carries an ErrMsg (err) field. code is an ErrCode
+    enum; a successful call returns ERROR_CODE_UNDEFINED (0). This is not an
+    RFC 9457 problem+json surface.
+problems:
+  - code: 0
+    name: ERROR_CODE_UNDEFINED
+    title: No error (success)
+  - code: 500
+    name: ERROR_CODE_COMMON
+    title: Common/internal gateway error
+  - code: 1001
+    name: ERROR_NO_TOKEN_ON_DST_CHAIN
+    title: Token not available on destination chain
+    remediation: Choose a token supported on the destination chain (see getTransferConfigs).
+  - code: 1002
+    name: ERROR_NO_TOKEN_ON_SRC_CHAIN
+    title: Token not available on source chain
+    remediation: Choose a token supported on the source chain (see getTransferConfigs).
+  - code: 1003
+    name: ERROR_INIT_WITHDRAW_FAILED
+    title: Withdraw initialization failed
+    remediation: Retry the withdrawLiquidity request; verify the signed withdraw_req and signature.
+transfer_refund_reasons:
+  note: >-
+    Returned as XferStatus / refund_reason on getTransferStatus for a
+    to-be-refunded transfer; these are transfer states, not API-call errors.
+  values:
+    - {name: BAD_LIQUIDITY, meaning: Insufficient destination-chain liquidity or zero dest amount}
+    - {name: BAD_SLIPPAGE, meaning: Slippage exceeded user-specified maximum}
+    - {name: BAD_TOKEN, meaning: Source or destination token not supported}
+    - {name: BAD_XFER_DISABLED, meaning: Asset is transfer-disabled}
+    - {name: BAD_DEST_CHAIN, meaning: Destination chain equals source chain}
+    - {name: EXCEED_MAX_OUT_AMOUNT, meaning: Amount exceeds max out allowance}
+    - {name: BAD_ADDRESS, meaning: Invalid address}

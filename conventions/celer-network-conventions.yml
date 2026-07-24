@@ -1,0 +1,35 @@
+generated: '2026-07-18'
+method: derived
+source: grpc/celer-network-gateway.proto + https://cbridge-docs.celer.network/developer/cbridge-sdk
+summary: >-
+  cBridge exposes a gRPC-Web gateway (sgn.gateway.v1.Web) with grpc-gateway REST
+  bindings. Read operations are unauthenticated; state-changing withdrawals are
+  authorized by a client-side wallet signature over a serialized request, not by
+  an API credential.
+authentication:
+  style: none-for-reads
+  writes: EIP-712 / client-signed request (withdraw_req + sig on WithdrawLiquidity)
+  cross_link: authentication/celer-network-authentication.yml
+idempotency:
+  supported: false
+  note: No idempotency-key header/parameter is documented for the gateway API.
+pagination:
+  style: cursor
+  request_params: [next_page_token, page_size]
+  response_fields: [next_page_token, current_size]
+  applies_to: [TransferHistory]
+  note: First page uses an empty next_page_token.
+error_envelope:
+  field: err
+  shape: '{ code: ErrCode, msg: string }'
+  cross_link: errors/celer-network-problem-types.yml
+versioning:
+  style: uri-path
+  current: v1
+  cross_link: lifecycle/celer-network-lifecycle.yml
+transport:
+  primary: gRPC-Web
+  also: REST (grpc-gateway HTTP annotations)
+  content_type: application/grpc-web / application/json
+rate_limit_signaling:
+  documented: false

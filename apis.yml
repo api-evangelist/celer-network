@@ -1,8 +1,16 @@
 aid: celer-network
 name: Celer Network
-description: 'Celer Network is a company surfaced as a portfolio company of pantera-capital and added
-  to the API Evangelist network as a stub for enrichment. Sector: crypto. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Celer Network is a blockchain interoperability protocol that enables seamless
+  cross-chain experiences for dApps, assets, and users. Its flagship cBridge is a
+  decentralized cross-chain asset bridge supporting 40+ blockchains with over $14B
+  in cumulative transfer volume, and Celer IM (Inter-chain Messaging) is a
+  framework for building multi-blockchain applications with efficient liquidity,
+  coherent logic, and shared state. For developers, the cBridge gateway exposes a
+  public gRPC-Web / REST API (sgn.gateway.v1.Web) for discovering supported
+  chains and tokens, estimating cross-chain transfer fees, tracking transfer
+  status, and withdrawing liquidity. Celer was surfaced as a portfolio company of
+  Pantera Capital.
 url: https://raw.githubusercontent.com/api-evangelist/celer-network/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,13 +18,50 @@ x-backed-by:
 - pantera-capital
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://www.celer.network/favicon.ico
 tags:
 - Company
 - Crypto
-apis: []
+- Blockchain
+- Interoperability
+- Cross-Chain
+- Bridge
+- DeFi
+- Web3
+apis:
+- name: cBridge Gateway API
+  description: >-
+    Public gRPC-Web / REST gateway (sgn.gateway.v1.Web) for the cBridge
+    cross-chain bridge: chain and token discovery, transfer fee estimation,
+    transfer status, transfer history, and signed liquidity withdrawal.
+  humanURL: https://cbridge-docs.celer.network/developer/cbridge-sdk
+  baseURL: https://cbridge-prod2.celer.app
+  properties:
+  - type: Protobuf
+    url: grpc/celer-network-gateway.proto
+  - type: Protobuf
+    url: grpc/celer-network-cbridge-query.proto
+  - type: Protobuf
+    url: grpc/celer-network-cbridge.proto
+  - type: Documentation
+    url: https://cbridge-docs.celer.network/developer/cbridge-sdk
+  - type: APIReference
+    url: https://cbridge-docs.celer.network/developer/cbridge-sdk
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +70,48 @@ maintainers:
 common:
 - type: Website
   url: https://www.celer.network/
+- type: DeveloperPortal
+  url: https://cbridge-docs.celer.network/developer/cbridge-sdk
+- type: Documentation
+  url: https://cbridge-docs.celer.network/developer/cbridge-sdk
+- type: APIReference
+  url: https://cbridge-docs.celer.network/developer/cbridge-sdk
+- type: GitHubOrganization
+  url: https://github.com/celer-network
+- type: Support
+  url: https://discord.com/invite/Trhab5w
+- type: Protobuf
+  url: grpc/celer-network-gateway.proto
+- type: Packages
+  url: packages/celer-network-packages.yml
+- type: SDKs
+  url: packages/celer-network-packages.yml
+- type: MCPServer
+  url: mcp/celer-network-mcp.yml
+- type: LLMsTxt
+  url: llms/celer-network-llms.txt
+- type: ErrorCatalog
+  url: errors/celer-network-problem-types.yml
+- type: Conventions
+  url: conventions/celer-network-conventions.yml
+- type: Authentication
+  url: authentication/celer-network-authentication.yml
+- type: Conformance
+  url: conformance/celer-network-conformance.yml
+- type: Lifecycle
+  url: lifecycle/celer-network-lifecycle.yml
+- type: DataModel
+  url: data-model/celer-network-data-model.yml
+- type: DomainSecurity
+  url: security/celer-network-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/celer-network-vulnerability-disclosure.yml
+- type: Security
+  url: https://immunefi.com/bounty/celer/
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

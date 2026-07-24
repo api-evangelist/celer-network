@@ -1,0 +1,30 @@
+generated: '2026-07-18'
+method: searched
+source: live probes of celer.network + cbridge hosts
+note: >-
+  No /.well-known/ discovery documents are published. The marketing site returns
+  a 301 (SPA redirect to apex, no document) for every probed path; the cBridge
+  gateway and docs hosts return 404. Recorded for auditability; no WellKnown
+  pointer is emitted because nothing real was found.
+hosts:
+  - host: https://www.celer.network
+    documents:
+      - {path: /.well-known/security.txt, status: 301}
+      - {path: /.well-known/openid-configuration, status: 301}
+      - {path: /.well-known/oauth-authorization-server, status: 301}
+      - {path: /.well-known/api-catalog, status: 301}
+      - {path: /.well-known/ai-plugin.json, status: 301}
+  - host: https://cbridge-prod2.celer.app
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://cbridge-docs.celer.network
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}

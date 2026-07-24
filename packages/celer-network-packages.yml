@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/celer-network + npm registry
+packages:
+  - language: javascript
+    registry: npm
+    name: celer-web-sdk
+    url: https://www.npmjs.com/package/celer-web-sdk
+    install: npm install celer-web-sdk
+    version: 0.8.3
+    official: true
+    repo: https://github.com/celer-network/celer-web-sdk
+    notes: JavaScript library to interact with a local Celer node (state-channel client).
+  - language: typescript
+    registry: github
+    name: cBridge-typescript-client
+    url: https://github.com/celer-network/cBridge-typescript-client
+    install: git clone https://github.com/celer-network/cBridge-typescript-client
+    official: true
+    notes: >-
+      Official TypeScript client for the cBridge cross-chain gateway. Ships
+      auto-generated protobuf/gRPC-Web stubs for the sgn.gateway.v1 Web service
+      (see grpc/celer-network-gateway.proto). Not published to the npm registry;
+      consumed from source.

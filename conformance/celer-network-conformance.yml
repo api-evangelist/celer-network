@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: derived
+source: grpc/celer-network-gateway.proto + https://cbridge-docs.celer.network/developer/cbridge-sdk
+standards:
+  - id: protobuf3
+    conforms: true
+    evidence: Service and messages defined in proto3 (grpc/celer-network-gateway.proto).
+  - id: grpc
+    conforms: true
+    evidence: gRPC-Web gateway (sgn.gateway.v1.Web), recommended transport per docs.
+  - id: rest
+    conforms: true
+    evidence: grpc-gateway google.api.http annotations expose REST bindings (/v1/*).
+  - id: oauth2
+    conforms: false
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom ErrMsg envelope, not application/problem+json.
+  - id: jsonapi
+    conforms: false
+  - id: cursor-pagination
+    conforms: true
+    evidence: TransferHistory uses next_page_token / page_size cursor pagination.

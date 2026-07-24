@@ -1,0 +1,34 @@
+# Celer Network
+
+> Celer Network is a blockchain interoperability protocol enabling seamless cross-chain experiences. Its cBridge cross-chain asset bridge supports 40+ blockchains with $14B+ in transfer volume, and Celer IM (Inter-chain Messaging) lets developers build inter-chain-native dApps with coherent logic and shared state. The cBridge gateway exposes a public gRPC-Web / REST API for chain/token discovery, fee estimation, transfer status, and liquidity withdrawal.
+
+## APIs
+
+- [cBridge Gateway API](https://cbridge-docs.celer.network/developer/cbridge-sdk): gRPC-Web/REST gateway (sgn.gateway.v1.Web). Mainnet https://cbridge-prod2.celer.app, testnet https://cbridge-v2-test.celer.network
+
+## Specs
+
+- [Gateway Protobuf](https://raw.githubusercontent.com/api-evangelist/celer-network/refs/heads/main/grpc/celer-network-gateway.proto): proto3 service + messages for the cBridge gateway
+- [cBridge query Protobuf](https://raw.githubusercontent.com/api-evangelist/celer-network/refs/heads/main/grpc/celer-network-cbridge-query.proto)
+- [cBridge Protobuf](https://raw.githubusercontent.com/api-evangelist/celer-network/refs/heads/main/grpc/celer-network-cbridge.proto)
+
+## Docs
+
+- [cBridge SDK Docs](https://cbridge-docs.celer.network/developer/cbridge-sdk)
+- [Celer IM Docs](https://im-docs.celer.network/developer/celer-im-overview)
+- [TypeScript Client](https://github.com/celer-network/cBridge-typescript-client)
+- [GitHub Organization](https://github.com/celer-network)
+
+## Operations
+
+- GetTransferConfigs — GET /v1/getTransferConfigs — supported chains and tokens
+- GetTokenInfo — GET /v1/getTokenInfo — chain and token info
+- EstimateAmt — GET /v1/estimateAmt — estimate transfer fee and received amount
+- GetTransferStatus — POST /v1/getTransferStatus — transfer status by id
+- WithdrawLiquidity — POST /v1/withdrawLiquidity — remove liquidity / refund (signed)
+- EstimateWithdrawAmt — POST /v1/estimateWithdrawAmt — estimate withdrawal
+- TransferHistory — GET /v1/transferHistory — user transfer history (cursor paginated)
+
+## Security
+
+- [Bug Bounty (ImmuneFi, up to $2M)](https://immunefi.com/bounty/celer/)
