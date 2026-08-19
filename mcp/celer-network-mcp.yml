@@ -2,42 +2,46 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: grpc/celer-network-gateway.proto
-notes: >-
-  Celer Network publishes no official hosted/remote MCP server. This is a
-  candidate tool list derived one-to-one from the cBridge gateway gRPC-Web/REST
-  service (sgn.gateway.v1.Web). Read operations are unauthenticated; the
-  withdrawLiquidity write requires a client-signed request.
+notes: Celer Network publishes no official hosted/remote MCP server. This is a candidate tool list derived
+  one-to-one from the cBridge gateway gRPC-Web/REST service (sgn.gateway.v1.Web). Read operations are
+  unauthenticated; the withdrawLiquidity write requires a client-signed request.
 server:
   name: celer-cbridge-gateway
   transport: http
   base_url_mainnet: https://cbridge-prod2.celer.app
   base_url_testnet: https://cbridge-v2-test.celer.network
 tools:
-  - name: get_transfer_configs
-    description: Get supported chains and token selector config (record decimals).
-    source_operation: grpc/celer-network-gateway.proto#GetTransferConfigs
-    http: GET /v1/getTransferConfigs
-  - name: get_token_info
-    description: Get chain and token info for a given chain_id + token_symbol.
-    source_operation: grpc/celer-network-gateway.proto#GetTokenInfo
-    http: GET /v1/getTokenInfo
-  - name: estimate_amt
-    description: Estimate the received amount and fees for a cross-chain transfer.
-    source_operation: grpc/celer-network-gateway.proto#EstimateAmt
-    http: GET /v1/estimateAmt
-  - name: get_transfer_status
-    description: Get the status of a transfer by transfer_id.
-    source_operation: grpc/celer-network-gateway.proto#GetTransferStatus
-    http: POST /v1/getTransferStatus
-  - name: withdraw_liquidity
-    description: Remove liquidity or refund a transfer (requires signed withdraw request).
-    source_operation: grpc/celer-network-gateway.proto#WithdrawLiquidity
-    http: POST /v1/withdrawLiquidity
-  - name: estimate_withdraw_amt
-    description: Estimate the received amount and fees for a liquidity withdrawal.
-    source_operation: grpc/celer-network-gateway.proto#EstimateWithdrawAmt
-    http: POST /v1/estimateWithdrawAmt
-  - name: transfer_history
-    description: List a user address's transfer history (cursor paginated).
-    source_operation: grpc/celer-network-gateway.proto#TransferHistory
-    http: GET /v1/transferHistory
+- name: get_transfer_configs
+  description: Get supported chains and token selector config (record decimals).
+  source_operation: grpc/celer-network-gateway.proto#GetTransferConfigs
+  http: GET /v1/getTransferConfigs
+- name: get_token_info
+  description: Get chain and token info for a given chain_id + token_symbol.
+  source_operation: grpc/celer-network-gateway.proto#GetTokenInfo
+  http: GET /v1/getTokenInfo
+- name: estimate_amt
+  description: Estimate the received amount and fees for a cross-chain transfer.
+  source_operation: grpc/celer-network-gateway.proto#EstimateAmt
+  http: GET /v1/estimateAmt
+- name: get_transfer_status
+  description: Get the status of a transfer by transfer_id.
+  source_operation: grpc/celer-network-gateway.proto#GetTransferStatus
+  http: POST /v1/getTransferStatus
+- name: withdraw_liquidity
+  description: Remove liquidity or refund a transfer (requires signed withdraw request).
+  source_operation: grpc/celer-network-gateway.proto#WithdrawLiquidity
+  http: POST /v1/withdrawLiquidity
+- name: estimate_withdraw_amt
+  description: Estimate the received amount and fees for a liquidity withdrawal.
+  source_operation: grpc/celer-network-gateway.proto#EstimateWithdrawAmt
+  http: POST /v1/estimateWithdrawAmt
+- name: transfer_history
+  description: List a user address's transfer history (cursor paginated).
+  source_operation: grpc/celer-network-gateway.proto#TransferHistory
+  http: GET /v1/transferHistory
+deployment:
+  mode: none
+  verified: derived
+  tools: 7
+  checked: '2026-08-12'
+  source: catalog MCP census
